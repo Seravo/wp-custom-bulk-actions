@@ -1,0 +1,95 @@
+<h1>wp-custom-bulk-actions</h1>
+
+<p>Currently Wordpress doesn't allow you to add custom bulk actions. See <a href="http://codex.wordpress.org/Plugin_API/Filter_Reference/bulk_actions">codex</a>. Adding them is super easy with this plugin.</p>
+
+<p>This is based on solution found <a href="http://www.skyverge.com/blog/add-custom-bulk-action/">here</a>, but makes it more easier to use.</p>
+
+<h2>Plugin</h2>
+
+<p>This plugin adds a class named Seravo<em>Custom</em>Bulk_Action</p>
+
+<h3>Class functions</h3>
+
+<p>Constructor with post as default post type</p>
+
+<p><code>php
+new Seravo_Custom_Bulk_Action(array('post_type' =&gt; $custom_post));
+</code></p>
+
+<p>Add actions. You must define at least menu_text and callback function.</p>
+
+<p><code>php
+register_bulk_action(array(
+'menu_text'=&gt;$your_menu_text,
+'admin_notice'=&gt;$display_text_for_admin,
+'action_name'=&gt;$optional_action_name,
+'callback'=&gt;$anonymous_function
+));
+</code></p>
+
+<p>Your anonymous callback function needs to have post_ids as parameter:</p>
+
+<p><code>php
+function($post_ids) {
+    //Do something here
+};
+$post_ids //Array of post IDs selected by user in admin panel
+</code></p>
+
+<p>Init functions to wordpress</p>
+
+<p><code>php
+init();
+</code></p>
+
+<h2>Example &amp; how to use</h2>
+
+<p>Install plugin and define your bulk actions in <code>functions.php</code>.</p>
+
+<p>In this example we're going to update metadata <em>property</em>status of custom posts called property</p>
+
+<p>`</p>
+
+<p>//Define bulk actions for custom-post-type property
+$bulk<em>actions = new Seravo</em>Custom<em>Bulk</em>Action(array('post_type' => 'property'));</p>
+
+<p>//ACTION EXAMPLE 1:</p>
+
+<p>$bulk<em>actions->register</em>bulk<em>action(array(
+    'menu</em>text'=>'Mark as sold (Myyty)',
+    'admin<em>notice'=>'Properties marked as sold',
+    'callback' => function($post</em>ids) {</p>
+
+<pre><code>//Do something with $post_ids here
+
+//In this example properties are marked as sold
+foreach ($post_ids as $post_id) {
+    update_post_meta($post_id,"_property_status", "sold");
+}
+return true;
+</code></pre>
+
+<p>}));</p>
+
+<p>//ACTION EXAMPLE 2, non-ascii chars in menutext:
+//Defining the action<em>name is optional but useful if you want to have non-ascii chars in menu</em>text</p>
+
+<p>$bulk<em>actions->register</em>bulk<em>action(array(
+    'menu</em>text'=>'Mark for sale (Myytäväksi)',
+    'admin<em>notice'=>'Properties marked for sale',
+    'action</em>name'=>'for<em>sale',
+    'callback' => function($post</em>ids) {</p>
+
+<pre><code>//Do something with $post_ids here
+
+//In this example properties are marked for sale
+foreach ($post_ids as $post_id) {
+    update_post_meta($post_id,"_property_status", "sale");
+}
+return true;
+</code></pre>
+
+<p>}));</p>
+
+<p>//Finally init actions
+$bulk_actions->init();</p>
