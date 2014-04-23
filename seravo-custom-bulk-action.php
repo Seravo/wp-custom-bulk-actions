@@ -43,6 +43,7 @@ if (!class_exists('Seravo_Custom_Bulk_Action')) {
 			$func = array();
 			$func["callback"] = $callback;
 			$func["menu_text"] = $menu_text;
+			$func["admin_notice"] = $admin_notice;
 
 			if ($action_name === '') {
 				//Convert menu text to action_name 'Mark as sold' => 'mark_as_sold'
