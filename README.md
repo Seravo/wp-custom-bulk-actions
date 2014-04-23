@@ -22,7 +22,7 @@ Add actions
 register_bulk_action(array('menu_text'=>$your_menu_text, 'action_name'=>$action_name, 'callback'=>$anonymous_function));
 ```
 
-Your callback anonymous functions need to have two parameters:
+Your anonymous callback function needs to have post_ids as parameter:
 
 ```php
 function($post_ids) {};
