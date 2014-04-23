@@ -22,6 +22,7 @@ Add actions
 	register_bulk_action(array('menu_text'=>$your_menu_text, 'action_name'=>$action_name, 'callback'=>$anonymous_function));
 
 Your anonymous_functions needs to have two parameters:
+
 	$post_ids (array of post IDs selected in admin panel)
 	$admin_text (reference to text which will show in admin panel after your action)
 
