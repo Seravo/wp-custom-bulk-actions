@@ -1,15 +1,11 @@
 <?php
 /*
-Plugin Name: Seravo Custom Bulk actions
-Plugin URI: http://www.seravo.fi
-Description: A working demonstration of a custom bulk action, it is used for toggling meta data 'sold' needs refactoring.
+Plugin Name: Custom Bulk actions
+Plugin URI: https://github.com/Seravo/wp-custom-bulk-actions
+Description: Custom bulk actions for any type of post
 Author: Onni Hakala
 Author URI: http://www.seravo.fi
 Version: 0.1
-
-	Copyright: © 2012 Justin Stern (email : justin@foxrunsoftware.net)
-	License: GNU General Public License v3.0
-	License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
 
 if (!class_exists('Seravo_Custom_Bulk_Action')) {
@@ -127,24 +123,15 @@ if (!class_exists('Seravo_Custom_Bulk_Action')) {
 				
 				$pagenum = $wp_list_table->get_pagenum();
 				$sendback = add_query_arg( 'paged', $pagenum, $sendback );
-				
-				//Take corresponding action from actions and use defined callback function
 
 				//check that we have anonymous function as a callback
 				$anon_fns = array_filter( $this->actions[$action], function( $el) { return $el instanceof Closure; });
 				if( count($anon_fns) == 0) {
-					wp_die( __('There\'s no callback defined for this action!'));
+					wp_die( __('There\'s no callback defined for this bulk action!'));
 				}
 
-				//Finally use the callback and let it decide what to print in admin panel notice
-				$text = "";
-				$admin_notices = $this->actions[$action]['callback']($post_ids, &$text);
-				//Update the user message if there is any
-				$this->actions[$action]['notice'] = $admin_notices;
-				/*if ($admin_notices != '') {
-					$this->actions[$action]['notice'] = $admin_notices;
-				}*/
-
+				//Finally use the callback
+				$this->actions[$action]['callback']($post_ids);
 
 				$sendback = add_query_arg( array('success_action' => $action, 'ids' => join(',', $post_ids)), $sendback );
 				
@@ -157,17 +144,18 @@ if (!class_exists('Seravo_Custom_Bulk_Action')) {
 		
 		
 		/**
-		 * Step 3: display an admin notice on the Posts page after exporting
+		 * Step 3: display an admin notice after action
 		 */
 		function custom_bulk_admin_notices() {
 			global $post_type, $pagenow;
-
 			
 			if($pagenow == 'edit.php' && $post_type == $this->bulk_action_post_type) {
 				if (isset($_REQUEST['success_action'])) {
-					//Print
-					$message = $this->actions[$_REQUEST['success_action']]['notice'];
-					echo "<div class=\"updated\"><p>{$_REQUEST['success_action']}:{$message}</p></div>";
+					//Print notice in admin bar
+					$message = $this->actions[$_REQUEST['success_action']]['admin_notice'];
+					if(!empty($message)) {
+						echo "<div class=\"updated\"><p>{$message}</p></div>";
+					}
 				}
 			}
 		}
