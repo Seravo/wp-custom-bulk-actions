@@ -16,7 +16,7 @@ Constructor with post as default post type
 new Seravo_Custom_Bulk_Action(array('post_type' => $custom_post));
 ```
 
-Add actions
+Add actions. You must define at least menu_text and callback function.
 
 ```php
 register_bulk_action(array(
