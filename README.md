@@ -14,21 +14,30 @@ This plugin adds a class named Seravo_Custom_Bulk_Action
 ### Class functions
 
 Constructor with post as default post type
-
+	
+	```php
 	new Seravo_Custom_Bulk_Action(array('post_type' => $custom_post));
+	```
 
 Add actions
 
+	```php
 	register_bulk_action(array('menu_text'=>$your_menu_text, 'action_name'=>$action_name, 'callback'=>$anonymous_function));
+	```
 
 Your anonymous_functions needs to have two parameters:
 
-	$post_ids (array of post IDs selected in admin panel)
-	$admin_text (reference to text which will show in admin panel after your action)
+	```php
+	function($post_ids,$admin_text) {};
+	$post_ids //Array of post IDs selected in admin panel
+	$admin_text //Text which will show in admin panel after your action
+	```
 
 Init functions to wordpress
 
+	```php
 	init();
+	```
 
 ## Example & how to use
 Install plugin and define your bulk actions in `functions.php`.
