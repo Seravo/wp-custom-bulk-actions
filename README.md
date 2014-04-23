@@ -4,6 +4,9 @@ Currently Wordpress doesn't allow you to add custom bulk actions. See [codex](ht
 
 This plugin is based on solution found [here](http://www.skyverge.com/blog/add-custom-bulk-action/), but makes it more easier to use.
 
+## TODO
+Custom admin panel texts from callbacks are not working
+
 ## Plugin
 
 This plugin adds a class named Seravo_Custom_Bulk_Action
