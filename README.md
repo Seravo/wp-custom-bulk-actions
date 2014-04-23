@@ -19,7 +19,12 @@ new Seravo_Custom_Bulk_Action(array('post_type' => $custom_post));
 Add actions
 
 ```php
-register_bulk_action(array('menu_text'=>$your_menu_text, 'action_name'=>$action_name, 'callback'=>$anonymous_function));
+register_bulk_action(array(
+'menu_text'=>$your_menu_text,
+'admin_notice'=>$display_text_for_admin,
+'action_name'=>$optional_action_name,
+'callback'=>$anonymous_function
+));
 ```
 
 Your anonymous callback function needs to have post_ids as parameter:
