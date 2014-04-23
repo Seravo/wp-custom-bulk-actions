@@ -57,7 +57,6 @@ $bulk_actions->register_bulk_action(array(
 	foreach ($post_ids as $post_id) {
 		update_post_meta($post_id,"_property_status", "sold");
 	}
-	$admin_text = "Marked targets as sold!";
 	return true;
 }));
 
