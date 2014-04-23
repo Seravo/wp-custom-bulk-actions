@@ -27,8 +27,9 @@ Init functions to wordpress
 ## Example & how to use
 Install plugin and define your bulk actions in `functions.php`.
 
-In this example we're going to update metadata of posts called _property_status
+In this example we're going to update metadata _property_status of custom posts called property
 ```php
+//Define bulk actions for custom-post-type property
 $bulk_actions = new Seravo_Custom_Bulk_Action(array('post_type' => 'property'));
 
 $bulk_actions->register_bulk_action(array('menu_text'=>'Mark as Sold',
@@ -36,6 +37,7 @@ $bulk_actions->register_bulk_action(array('menu_text'=>'Mark as Sold',
 
 	//Do something with $post_ids here
 
+	//In this example properties are marked as sold
 	foreach ($post_ids as $post_id) {
 		update_post_meta($post_id,"_property_status", "sold");
 	}
@@ -48,7 +50,8 @@ $bulk_actions->register_bulk_action(array('menu_text'=>'Mark for Sale', 'action_
 	'callback' => function($post_ids,$admin_text) {
 
 	//Do something with $post_ids here
-	
+
+	//In this example properties are marked for sale
 	foreach ($post_ids as $post_id) {
 		update_post_meta($post_id,"_property_status", "sale");
 	}
