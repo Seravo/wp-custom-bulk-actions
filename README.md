@@ -47,6 +47,7 @@ In this example we're going to update metadata _property_status of custom posts 
 //Define bulk actions for custom-post-type property
 $bulk_actions = new Seravo_Custom_Bulk_Action(array('post_type' => 'property'));
 
+//Define actions one by one
 $bulk_actions->register_bulk_action(array('menu_text'=>'Mark as Sold',
 	'callback' => function($post_ids,$admin_text) {
 
