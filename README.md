@@ -30,7 +30,9 @@ register_bulk_action(array(
 Your anonymous callback function needs to have post_ids as parameter:
 
 ```php
-function($post_ids) {};
+function($post_ids) {
+	//Do something here
+};
 $post_ids //Array of post IDs selected by user in admin panel
 ```
 
