@@ -36,7 +36,7 @@ $bulk_actions->register_bulk_action(array('menu_text'=>'Mark as Sold',
 	foreach ($post_ids as $post_id) {
 		update_post_meta($post_id,"_property_status", "sold");
 	}
-	$admin_text = "Merkattiin myyntiin!";
+	$admin_text = "Marked targets as sold!";
 	return true;
 }));
 
@@ -46,7 +46,7 @@ $bulk_actions->register_bulk_action(array('menu_text'=>'Mark for Sale', 'action_
 	foreach ($post_ids as $post_id) {
 		update_post_meta($post_id,"_property_status", "sale");
 	}
-	$admin_text = "Merkattiin myytäväksi!";
+	$admin_text = "Marked targets for sale!";
 	return true;
 }));
 
