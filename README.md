@@ -25,7 +25,7 @@ Add actions
 register_bulk_action(array('menu_text'=>$your_menu_text, 'action_name'=>$action_name, 'callback'=>$anonymous_function));
 ```
 
-Your anonymous_functions needs to have two parameters:
+Your callback anonymous functions need to have two parameters:
 
 ```php
 function($post_ids,$admin_text) {};
