@@ -33,6 +33,9 @@ $bulk_actions = new Seravo_Custom_Bulk_Action(array('post_type' => 'property'));
 
 $bulk_actions->register_bulk_action(array('menu_text'=>'Mark as Sold',
 	'callback' => function($post_ids,$admin_text) {
+
+	//Do something with $post_ids here
+
 	foreach ($post_ids as $post_id) {
 		update_post_meta($post_id,"_property_status", "sold");
 	}
@@ -43,6 +46,9 @@ $bulk_actions->register_bulk_action(array('menu_text'=>'Mark as Sold',
 //Defining the action_name is optional but useful if you want to have non-ascii chars in menu_text
 $bulk_actions->register_bulk_action(array('menu_text'=>'Mark for Sale', 'action_name'=>'for_sale',
 	'callback' => function($post_ids,$admin_text) {
+
+	//Do something with $post_ids here
+	
 	foreach ($post_ids as $post_id) {
 		update_post_meta($post_id,"_property_status", "sale");
 	}
