@@ -31,7 +31,7 @@ Your anonymous callback function needs to have post_ids as parameter:
 
 ```php
 function($post_ids) {};
-$post_ids //Array of post IDs selected in admin panel
+$post_ids //Array of post IDs selected by user in admin panel
 ```
 
 Init functions to wordpress
