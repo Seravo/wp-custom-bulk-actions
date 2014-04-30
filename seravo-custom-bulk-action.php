@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: Custom Bulk actions
+Plugin Name: Custom Bulk Actions
 Plugin URI: https://github.com/Seravo/wp-custom-bulk-actions
 Description: Custom bulk actions for any type of post
-Author: Onni Hakala
-Author URI: http://www.seravo.fi
+Author: Onni Hakala, Otto Kekäläinen, Antti Kuosmanen
+Author URI: http://seravo.fi
 Version: 0.1
 */
 

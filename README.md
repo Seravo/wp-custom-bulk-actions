@@ -1,5 +1,5 @@
-wp-custom-bulk-actions
-======================
+Custom Bulk Actions
+===================
 Currently Wordpress doesn't allow you to add custom bulk actions. See [codex](http://codex.wordpress.org/Plugin_API/Filter_Reference/bulk_actions). Adding them is super easy with this plugin.
 
 This is based on solution found [here](http://www.skyverge.com/blog/add-custom-bulk-action/), but makes it more easier to use.

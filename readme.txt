@@ -1,8 +1,8 @@
-=== wp-custom-bulk-actions ===
+=== Custom Bulk Actions ===
 
 Currently Wordpress doesn't allow you to add custom bulk actions. Adding them is super easy with this plugin.
 
-Contributors: onnimonni
+Contributors: onnimonni, ottok, zuige
 Tags: custom, bulk actions, mass edit, post, custom post
 Donate link: http://seravo.fi/
 Requires at least: 3.9
