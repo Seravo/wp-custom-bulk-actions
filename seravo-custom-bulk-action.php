@@ -125,14 +125,20 @@ if (!class_exists('Seravo_Custom_Bulk_Action')) {
 				$pagenum = $wp_list_table->get_pagenum();
 				$sendback = add_query_arg( 'paged', $pagenum, $sendback );
 
-				//check that we have anonymous function as a callback
-				$anon_fns = array_filter( $this->actions[$action], function( $el) { return $el instanceof Closure; });
-				if( count($anon_fns) == 0) {
-					wp_die( __('There\'s no callback defined for this bulk action!'));
+				if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
+					//check that we have anonymous function as a callback
+					$anon_fns = array_filter( $this->actions[$action], function( $el) { return $el instanceof Closure; });
+					if( count($anon_fns) != 0) {
+						//Finally use the callback
+						$result = $this->actions[$action]['callback']($post_ids);
+					}
+					else {
+						$result = call_user_func($this->actions[$action]['callback'], $post_ids);
+					}
 				}
-
-				//Finally use the callback
-				$this->actions[$action]['callback']($post_ids);
+				else {
+					$result = call_user_func($this->actions[$action]['callback'], $post_ids);
+				}
 
 				$sendback = add_query_arg( array('success_action' => $action, 'ids' => join(',', $post_ids)), $sendback );
 				
