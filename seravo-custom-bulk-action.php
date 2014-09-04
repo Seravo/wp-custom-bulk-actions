@@ -3,10 +3,29 @@
 Plugin Name: Custom Bulk Actions
 Plugin URI: https://github.com/Seravo/wp-custom-bulk-actions
 Description: Custom bulk actions for any type of post
-Author: Onni Hakala, Otto Kekäläinen, Antti Kuosmanen
+Author: Onni Hakala (Seravo Oy), Otto Kekäläinen (Seravo Oy), Antti Kuosmanen (Seravo Oy)
 Author URI: http://seravo.fi
 Version: 0.1
+License: GPLv3
 */
+
+
+/** Copyright 2014  Onni Hakala / Seravo Oy
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License, version 3, as
+  published by the Free Software Foundation.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
 
 if (!class_exists('Seravo_Custom_Bulk_Action')) {
  
