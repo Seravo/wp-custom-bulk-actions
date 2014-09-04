@@ -1,10 +1,10 @@
 === Custom Bulk Actions ===
 Contributors: onnimonni, ottok, zuige
-Tags: custom, bulk actions, mass edit, post, custom post
+Tags: custom, bulk actions, mass edit, post, custom post, seravo
 Donate link: http://seravo.fi/
 Requires at least: 3.9
 Tested up to: 4.0
-Stable tag: 0.1
+Stable tag: 0.1.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
