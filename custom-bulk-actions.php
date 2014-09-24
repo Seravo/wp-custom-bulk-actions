@@ -1,12 +1,12 @@
 <?php
-/*
-Plugin Name: Custom Bulk Actions
-Plugin URI: https://github.com/Seravo/wp-custom-bulk-actions
-Description: Custom bulk actions for any type of post
-Author: Seravo Oy
-Author URI: http://seravo.fi
-Version: 0.1.1
-License: GPLv3
+/**
+ * Plugin Name: Custom Bulk Actions
+ * Plugin URI: https://github.com/Seravo/wp-custom-bulk-actions
+ * Description: Custom bulk actions for any type of post
+ * Author: Seravo Oy
+ * Author URI: http://seravo.fi
+ * Version: 0.1.1
+ * License: GPLv3
 */
 
 /** Copyright 2014 Seravo Oy
