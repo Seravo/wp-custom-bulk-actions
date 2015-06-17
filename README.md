@@ -1,8 +1,14 @@
 Custom Bulk Actions
 ===================
+[![Build Status](https://travis-ci.org/Seravo/wp-custom-bulk-actions.svg?branch=master)](https://travis-ci.org/Seravo/wp-custom-bulk-actions)
+Custom bulk actions for any type of posts in WordPress.
+
 Currently Wordpress doesn't allow you to add custom bulk actions. See [codex](http://codex.wordpress.org/Plugin_API/Filter_Reference/bulk_actions). Adding them is super easy with this plugin.
 
 This is based on solution found [here](http://www.skyverge.com/blog/add-custom-bulk-action/), but makes it more easier to use.
+
+## Installation
+Available for installation via [Composer via Packagist](https://packagist.org/packages/seravo/wp-custom-bulk-actions) or [GitHub Plugin Search](https://github.com/brainstormmedia/github-plugin-search).
 
 ## Plugin
 
