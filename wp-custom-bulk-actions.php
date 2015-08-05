@@ -163,7 +163,7 @@ if (!class_exists('Seravo_Custom_Bulk_Action')) {
 				$sendback = remove_query_arg( array('action', 'paged', 'mode', 'action2', 'tags_input', 'post_author', 'comment_status', 'ping_status', '_status',  'post', 'bulk_edit', 'post_view'), $sendback );
 				
 				wp_redirect($sendback);
-				exit();
+				exit();di
 			}
 		}
 		
@@ -174,12 +174,29 @@ if (!class_exists('Seravo_Custom_Bulk_Action')) {
 		function custom_bulk_admin_notices() {
 			global $post_type, $pagenow;
 			
+			if( isset($_REQUEST['ids']) ){
+				$post_ids = explode( ',', $_REQUEST['ids'] );
+			}
+			
+			// make sure ids are submitted.  depending on the resource type, this may be 'media' or 'ids'
+			if(empty($post_ids)) return;
+			
+			$post_ids_count = 1;
+			if( is_array($post_ids) ){
+				$post_ids_count = count($post_ids);
+			}
+			
 			if($pagenow == 'edit.php' && $post_type == $this->bulk_action_post_type) {
 				if (isset($_REQUEST['success_action'])) {
 					//Print notice in admin bar
 					$message = $this->actions[$_REQUEST['success_action']]['admin_notice'];
+					
+					if( is_array($message) ){
+						$message = sprintf( _n( $message['single'], $message['plural'], $post_ids_count, 'wordpress' ), $post_ids_count );
+					}
+					$class = "updated notice is-dismissible above-h2";
 					if(!empty($message)) {
-						echo "<div class=\"updated\"><p>{$message}</p></div>";
+						echo "<div class=\"{$class}\"><p>{$message}</p></div>";
 					}
 				}
 			}
