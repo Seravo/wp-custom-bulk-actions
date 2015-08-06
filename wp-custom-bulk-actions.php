@@ -5,7 +5,7 @@
  * Description: Custom bulk actions for any type of post
  * Author: Seravo Oy
  * Author URI: http://seravo.fi
- * Version: 0.1.1
+ * Version: 0.1.3
  * License: GPLv3
 */
 
