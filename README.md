@@ -26,10 +26,24 @@ Add actions. You must define at least menu_text and callback function.
 
 ```php
 register_bulk_action(array(
-'menu_text'=>$your_menu_text,
-'admin_notice'=>$display_text_for_admin,
-'action_name'=>$optional_action_name,
-'callback'=>$anonymous_function
+'menu_text' => $your_menu_text,
+'admin_notice' => $display_text_for_admin,
+'action_name' => $optional_action_name,
+'callback' => $anonymous_function
+));
+```
+
+admin_notice parameter accepts arrays for plural texts too (thanks @cyberwani)
+For example:
+```php
+register_bulk_action(array(
+'menu_text' => $your_menu_text,
+'admin_notice' => 'admin_notice'=>array(
+    'single' => '%s Appointment cancelled.',
+    'plural' => '%s Appointments cancelled.',
+),
+'action_name' => $optional_action_name,
+'callback' => $anonymous_function
 ));
 ```
 
