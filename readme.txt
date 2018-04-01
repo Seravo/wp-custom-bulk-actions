@@ -1,12 +1,14 @@
 === Custom Bulk Actions ===
 Contributors: onnimonni, ottok, zuige
+Donate link: https://seravo.com/
 Tags: custom, bulk actions, mass edit, post, custom post, seravo
-Donate link: http://seravo.fi/
 Requires at least: 3.9
-Tested up to: 4.4.1
-Stable tag: 0.1.3
-License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Tested up to: 4.9.4
+Requires PHP: 5.6.0
+Stable tag: trunk
+License: GPLv3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+
 
 Currently Wordpress doesn't allow you to add custom bulk actions. Adding them is super easy with this plugin.
 

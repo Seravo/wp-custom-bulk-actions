@@ -1,15 +1,15 @@
 <?php
 /**
  * Plugin Name: Custom Bulk Actions
+ * Version: 0.1.4
  * Plugin URI: https://github.com/Seravo/wp-custom-bulk-actions
  * Description: Custom bulk actions for any type of post
- * Author: Seravo Oy
- * Author URI: http://seravo.fi
- * Version: 0.1.3
- * License: GPLv3
+ * Author: Seravo
+ * Author URI: https://seravo.com/
+ * License: GPL v3 or later
 */
 
-/** Copyright 2014-2016 Seravo Oy
+/** Copyright 2014-2018 Seravo Oy
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License, version 3, as
@@ -27,11 +27,11 @@
 
 
 if (!class_exists('Seravo_Custom_Bulk_Action')) {
- 
+
 	class Seravo_Custom_Bulk_Action {
 		public $bulk_action_post_type;
 		private $actions = array();
-		
+
 		public function __construct($args='') {
 			//Define which post types these bulk actions affect.
 			$defaults = array(
@@ -80,14 +80,14 @@ if (!class_exists('Seravo_Custom_Bulk_Action')) {
 				add_action('admin_notices',         array(&$this, 'custom_bulk_admin_notices'));
 			}
 		}
-		
-		
+
+
 		/**
 		 * Step 1: add the custom Bulk Action to the select menus
 		 */
 		function custom_bulk_admin_footer() {
 			global $post_type;
-			
+
 			//Only permit actions with defined post type
 			if($post_type == $this->bulk_action_post_type) {
 				?>
@@ -104,42 +104,42 @@ if (!class_exists('Seravo_Custom_Bulk_Action')) {
 			}
 		}
 
-		
-		
+
+
 		/**
 		 * Step 2: handle the custom Bulk Action
-		 * 
+		 *
 		 * Based on the post http://wordpress.stackexchange.com/questions/29822/custom-bulk-action
 		 */
 		function custom_bulk_action() {
 			global $typenow;
 			$post_type = $typenow;
-			
+
 			if($post_type == $this->bulk_action_post_type) {
-				
+
 				// get the action
 				$wp_list_table = _get_list_table('WP_Posts_List_Table');  // depending on your resource type this could be WP_Users_List_Table, WP_Comments_List_Table, etc
 				$action = $wp_list_table->current_action();
-				
+
 				// allow only defined actions
 				$allowed_actions = array_keys($this->actions);
 				if(!in_array($action, $allowed_actions)) return;
-				
+
 				// security check
 				check_admin_referer('bulk-posts');
-				
+
 				// make sure ids are submitted.  depending on the resource type, this may be 'media' or 'ids'
 				if(isset($_REQUEST['post'])) {
 					$post_ids = array_map('intval', $_REQUEST['post']);
 				}
-				
+
 				if(empty($post_ids)) return;
-				
+
 				// this is based on wp-admin/edit.php
 				$sendback = remove_query_arg( array('exported', 'untrashed', 'deleted', 'ids'), wp_get_referer() );
 				if ( ! $sendback )
 					$sendback = admin_url( "edit.php?post_type=$post_type" );
-				
+
 				$pagenum = $wp_list_table->get_pagenum();
 				$sendback = add_query_arg( 'paged', $pagenum, $sendback );
 
@@ -159,38 +159,38 @@ if (!class_exists('Seravo_Custom_Bulk_Action')) {
 				}
 
 				$sendback = add_query_arg( array('success_action' => $action, 'ids' => join(',', $post_ids)), $sendback );
-				
+
 				$sendback = remove_query_arg( array('action', 'paged', 'mode', 'action2', 'tags_input', 'post_author', 'comment_status', 'ping_status', '_status',  'post', 'bulk_edit', 'post_view'), $sendback );
-				
+
 				wp_redirect($sendback);
 				exit();
 			}
 		}
-		
-		
+
+
 		/**
 		 * Step 3: display an admin notice after action
 		 */
 		function custom_bulk_admin_notices() {
 			global $post_type, $pagenow;
-			
+
 			if( isset($_REQUEST['ids']) ){
 				$post_ids = explode( ',', $_REQUEST['ids'] );
 			}
-			
+
 			// make sure ids are submitted.  depending on the resource type, this may be 'media' or 'ids'
 			if(empty($post_ids)) return;
-			
+
 			$post_ids_count = 1;
 			if( is_array($post_ids) ){
 				$post_ids_count = count($post_ids);
 			}
-			
+
 			if($pagenow == 'edit.php' && $post_type == $this->bulk_action_post_type) {
 				if (isset($_REQUEST['success_action'])) {
 					//Print notice in admin bar
 					$message = $this->actions[$_REQUEST['success_action']]['admin_notice'];
-					
+
 					if( is_array($message) ){
 						$message = sprintf( _n( $message['single'], $message['plural'], $post_ids_count, 'wordpress' ), $post_ids_count );
 					}
