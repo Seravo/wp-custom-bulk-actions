@@ -5,7 +5,7 @@ if ( ! $_tests_dir ) {
 	$_tests_dir = '/tmp/wordpress-tests-lib';
 }
 
-define('PLUGIN_FOLDER','wp-custom-bulk-actions')
+define('PLUGIN_FOLDER','wp-custom-bulk-actions');
 define('PLUGIN_NAME','wp-custom-bulk-actions.php');
 define('PLUGIN_PATH',PLUGIN_FOLDER.'/'.PLUGIN_NAME);
 
