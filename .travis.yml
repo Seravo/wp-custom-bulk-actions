@@ -1,11 +1,13 @@
 # This uses newer and faster docker based build system
-sudo: false
 
 language: php
 
 notifications:
   on_success: never
   on_failure: change
+
+services:
+  - mysql
 
 php:
   - nightly
